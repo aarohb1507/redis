@@ -16,6 +16,10 @@ async function testRedisConnection(){
   try {
       client.connect()
       console.log("connected to redis"); //confirm whether connected or not
+      await client.set("count", "100")
+      const incrementGet = await client.incr("count")
+      console.log(incrementGet);
+      
       
   } catch (error) {
     console.error(error)
